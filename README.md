@@ -76,6 +76,7 @@ is_medical("What are you doing this weekend?")                    # → False
 ---
 
 ## Estructura del repositorio
+```
 /
 ├── modules/
 │   ├── medical_detector.py   # C2: Detección de contexto médico
@@ -83,22 +84,19 @@ is_medical("What are you doing this weekend?")                    # → False
 │   ├── translator.py         # C4: Traducción con mBART
 │   ├── stt.py                # C1: Speech to Text
 │   └── tts.py                # C5: Text to Speech
-├── models/
-│   └── medical_detector.pkl  # Modelo entrenado C2
+├   └──  models/
+│          └── medical_detector.pkl  # Modelo entrenado C2
 ├── pipeline.py               # Orquestador principal
 ├── config.yaml               # Configuración del sistema
 ├── requirements.txt          # Dependencias
 └── README.md
-
----
+```
 
 ## Autores
 
-| Nombre | Módulo |
-|--------|--------|
-| Mario Vázquez Lechuga |
-| Cristian Caballero Sánchez |
-| Natalia Olmo Villegas |
-| Manuel Enciso Martínez |
+- Mario Vázquez Lechuga
+- Cristian Caballero Sánchez
+- Natalia Olmo Villegas
+- Manuel Enciso Martínez
 
 ---
