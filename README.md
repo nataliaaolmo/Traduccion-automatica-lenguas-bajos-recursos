@@ -117,7 +117,7 @@ terminología médica.
 ```bash
 git clone https://github.com/nataliaaolmo/Traduccion-automatica-lenguas-bajos-recursos.git
 cd traduccion-bajos-recursos
-python -m venv .venv
+python -3.10 -m venv .venv
 
 # Windows (PowerShell)
 .venv\Scripts\Activate.ps1
