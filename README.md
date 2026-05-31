@@ -38,9 +38,9 @@ antes de entrar en C2/C4).
 Clasificador binario que determina si una frase contiene terminología médica. Solo se
 activa en la dirección inglés → lengua de bajos recursos.
 
-- **Entrenamiento:** [`modules/medical_detector.py`](modules/medical_detector.py) —
+- **Entrenamiento:** [`modules/medical_detector.py`](modules/medical_detector.py) -
   descarga los datasets, equilibra las clases, entrena y guarda el modelo.
-- **Inferencia (utilizada por el pipeline):** [`modules/detector.py`](modules/detector.py) —
+- **Inferencia (utilizada por el pipeline):** [`modules/detector.py`](modules/detector.py) -
   carga el `.pkl` y expone `classify()`.
 
 **Datasets utilizados** (equilibrados por clase, `n = min(médico, cotidiano)`):
@@ -80,8 +80,8 @@ Ejemplo: *"edema" → "swelling caused by fluid"*.
 - **Modelo:** `meta-llama/Llama-3.1-8B-Instruct` (gated: requiere aceptar su licencia
   con la cuenta del token de Hugging Face).
 - **Backends** (parámetro `mode`):
-  - `"api"` — Hugging Face Inference API (chat completion). Requiere `HF_TOKEN`.
-  - `"local"` — el modelo descargado y ejecutado en CPU.
+  - `"api"` - Hugging Face Inference API (chat completion). Requiere `HF_TOKEN`.
+  - `"local"` - el modelo descargado y ejecutado en CPU.
 
 Solo se invoca en el sentido altos → bajos recursos y únicamente cuando C2 detecta
 terminología médica.
@@ -91,8 +91,8 @@ terminología médica.
 - **Módulo:** [`modules/translator.py`](modules/translator.py)
 - **Modelo:** `facebook/mbart-large-50-many-to-many-mmt` (~2.4 GB, la primera ejecución en local lo descarga y luego funciona offline).
 - **Backends** (parámetro `mode`):
-  - `"local"` — ejecución local en CPU/GPU. **Camino fiable.**
-  - `"api"` — Hugging Face Inference API. Ojo: el router serverless no siempre
+  - `"local"` - ejecución local en CPU/GPU. **Camino fiable.**
+  - `"api"` - Hugging Face Inference API. Ojo: el router serverless no siempre
     respeta `src_lang`/`tgt_lang` para mBART, por lo que conviene validar sus salidas.
 
 **Lengua de altos recursos:** inglés (`en_XX`).
@@ -137,13 +137,11 @@ automáticamente [`modules/env.py`](modules/env.py); está ignorado por git):
 HF_TOKEN=hf_tu_token_aqui
 ```
 
-Si no defines token, usa los modos `"local"` (mBART funciona; Llama requiere haber
-aceptado la licencia con tu cuenta).
+Si no defines token, usa los modos `"local"` (Es posible que los modelos requieran aceptar los términos en su correspondiente página de Hugging Face).
 
 ### 3. Ejecutar la aplicación web
 
-La interfaz es una app de **Gradio**. Se lanza desde dentro de `modules/` (los módulos
-se importan de forma plana):
+La interfaz es una app de **Gradio**. Se lanza desde dentro de `modules/`:
 
 ```bash
 cd modules
@@ -151,7 +149,7 @@ python app.py
 ```
 
 Gradio abre una URL local (`http://127.0.0.1:7860`). La interfaz muestra dos paneles
-bilingües —doctor (inglés) y paciente (lengua elegida)— con selección de idioma y de
+bilingües: doctor (inglés) y paciente (lengua elegida)- con selección de idioma y de
 backend (`api`/`local`) para el simplificador y el traductor por separado.
 
 ### 4. Probar los componentes por separado
@@ -169,13 +167,12 @@ python pipeline.py           # Orquestador: demo de las dos direcciones
 
 > **Nota de rendimiento:** los modelos en modo `"local"` se cargan de forma perezosa
 > (la primera traducción/simplificación es lenta, las siguientes reutilizan el modelo
-> en memoria). Recomendado: simplificador en `"api"` y traductor en `"local"`.
+> en memoria). <br> **Recomendado**: utilizar ambos modelos en modo api siempre que sea posible.
 
 ---
 
 ## Estructura del repositorio
 ```
-/
 ├── modules/
 │   ├── app.py                # Interfaz web Gradio (entrypoint)
 │   ├── pipeline.py           # Orquestador del pipeline direccional
@@ -186,7 +183,7 @@ python pipeline.py           # Orquestador: demo de las dos direcciones
 │   ├── env.py                # Carga de .env (HF_TOKEN)
 │   └── models/
 │       └── medical_detector.pkl   # Modelo entrenado de C2
-├── requirements.txt          # Dependencias (pinneadas)
+├── requirements.txt          # Dependencias
 ├── .gitignore
 └── README.md
 ```
