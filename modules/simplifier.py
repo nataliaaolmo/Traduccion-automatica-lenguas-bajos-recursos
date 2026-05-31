@@ -25,7 +25,7 @@ os.environ.setdefault("USE_FLAX", "0")
 os.environ.setdefault("TRANSFORMERS_NO_ADVISORY_WARNINGS", "1")
 os.environ.setdefault("TF_CPP_MIN_LOG_LEVEL", "3")
 
-import env  # noqa: F401  carga .env (HF_TOKEN) en os.environ
+import env
 
 MODEL = "meta-llama/Llama-3.1-8B-Instruct"
 

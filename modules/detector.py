@@ -2,7 +2,7 @@
 Componente C2 — Inferencia del detector de dominio médico (para el pipeline).
 
 Carga el modelo TF-IDF + SVM entrenado por `medical_detector.py`
-(models/medical_detector.pkl) y expone `is_medical()` y `classify()`.
+(models/medical_detector.pkl) y expone `classify()`.
 
 Se mantiene SEPARADO del script de entrenamiento (medical_detector.py) para que
 importar estas funciones NO dispare la descarga de datasets ni el reentrenamiento:
@@ -27,10 +27,6 @@ def _load_model():
 
 # El .pkl se carga una sola vez al importar el módulo (operación barata).
 _model = _load_model()
-
-
-def is_medical(text: str) -> bool:
-    return bool(_model.predict([text])[0])
 
 
 def classify(text: str):

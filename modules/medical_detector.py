@@ -1,3 +1,25 @@
+"""
+Componente C2 — Entrenamiento del detector de dominio médico (TF-IDF + SVM).
+
+Entrena un clasificador binario que distingue texto médico (1) de texto cotidiano
+(0) y guarda el modelo en models/medical_detector.pkl. Combina dos datasets de
+Hugging Face equilibrados por clase:
+
+    avaliev/chat_doctor          -> ejemplos médicos (campo "input").
+    agentlans/li2017dailydialog  -> conversación cotidiana (turnos "human").
+
+El modelo es un Pipeline de scikit-learn: TfidfVectorizer (unigramas + bigramas)
+seguido de un LinearSVC con class_weight="balanced".
+
+Se mantiene SEPARADO del módulo de inferencia (detector.py) para que el pipeline
+no dispare la descarga de datasets ni el reentrenamiento al importar. Para
+(re)entrenar el modelo y lanzar los tests básicos:
+
+    python medical_detector.py
+
+La primera ejecución descarga ambos datasets desde Hugging Face.
+"""
+
 from datasets import load_dataset
 from sklearn.pipeline import Pipeline
 from sklearn.feature_extraction.text import TfidfVectorizer

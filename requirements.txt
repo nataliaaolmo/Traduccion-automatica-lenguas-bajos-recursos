@@ -1,0 +1,12 @@
+# Dependencias del pipeline (Python 3.13)
+# Generado a partir de los imports de los módulos en modules/.
+
+datasets==4.5.0
+scikit-learn==1.8.0
+joblib==1.5.3
+transformers==4.50.1
+huggingface_hub==0.36.2
+python-dotenv==1.0.1
+gradio==6.15.2
+torch==2.10.0
+sentencepiece==0.2.1
