@@ -115,7 +115,7 @@ terminología médica.
 ### 1. Instalación
 
 ```bash
-git clone https://github.com/vuestro-repo/traduccion-bajos-recursos.git
+git clone https://github.com/nataliaaolmo/Traduccion-automatica-lenguas-bajos-recursos.git
 cd traduccion-bajos-recursos
 python -m venv .venv
 
