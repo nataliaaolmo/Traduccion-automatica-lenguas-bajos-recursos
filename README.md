@@ -131,10 +131,10 @@ pip install -r requirements.txt
 
 Los backends `"api"` y la descarga del modelo gated de Llama necesitan un token de
 Hugging Face. Crea un archivo `.env` **dentro de `modules/`** (lo carga
-automáticamente [`modules/env.py`](modules/env.py); está ignorado por git):
+automáticamente [`modules/env.py`](modules/env.py), está ignorado por git), usar .env.example como plantilla y renombrarlo al configurar el token:
 
 ```
-HF_TOKEN=hf_tu_token_aqui
+HF_TOKEN=YOUR_HUGGINGFACE_TOKEN_HERE
 ```
 
 Si no defines token, usa los modos `"local"` (Es posible que los modelos requieran aceptar los términos en su correspondiente página de Hugging Face).
