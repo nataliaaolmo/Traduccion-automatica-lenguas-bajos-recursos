@@ -152,10 +152,18 @@ Gradio abre una URL local (`http://127.0.0.1:7860`). La interfaz muestra dos pan
 bilingües: doctor (inglés) y paciente (lengua elegida)- con selección de idioma y de
 backend (`api`/`local`) para el simplificador y el traductor por separado.
 
-| Tipo | Entrada | Salida |
-|------|---------|--------|
-| 🏥 Médico | `The intra-encephalic CT scan shows clear signs of hemorrhage` | `The scan of the brain shows clear signs of bleeding inside the brain` |
-| 💬 General | `How's your day going?` | *(no se simplifica, se detecta como no médico)* |
+#### Vista de la interfaz web
+
+Vista principal de la aplicación, con los paneles del doctor y del paciente:
+
+![Vista principal de la interfaz web](resources/web_view.png)
+
+Selector de la lengua de bajos recursos de destino:
+
+![Selección de lengua de bajos recursos](resources/language_selection.png)
+
+
+
 
 ### 4. Probar los componentes por separado
 
