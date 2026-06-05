@@ -54,7 +54,9 @@ unigramas y bigramas) + `LinearSVC` (`class_weight="balanced"`).
 | Métrica | Valor |
 |---------|-------|
 | Accuracy | 0.9969 |
-| F1-Macro | 1.00 |
+| Macro-Precision | 0.9969 |
+| Macro-Recall | 0.9969 |
+| F1-Macro | 0.9969 |
 
 La función pública `classify(text)` devuelve `(is_medical, confidence)`. La confianza
 se aproxima aplicando una sigmoide al margen de `decision_function` (orientativa, no

@@ -24,9 +24,10 @@ from datasets import load_dataset
 from sklearn.pipeline import Pipeline
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.svm import LinearSVC
-from sklearn.metrics import classification_report, accuracy_score
+from sklearn.metrics import accuracy_score, precision_recall_fscore_support, confusion_matrix
 from sklearn.model_selection import train_test_split
 import joblib, os, random
+
 
 # ── 1. CARGAR DATASETS ──────────────────────────────────────────────────────
 
@@ -78,9 +79,35 @@ model.fit(X_train, y_train)
 # ── 6. EVALUAR (accuracy + F1-Macro) ────────────────────────────────────────
 
 y_pred = model.predict(X_test)
+
+precision_macro, recall_macro, f1_macro, _ = precision_recall_fscore_support(
+    y_test, y_pred, average='macro'
+)
+
 print("\n── Resultados ──")
-print(f"Accuracy: {accuracy_score(y_test, y_pred):.4f}")
-print(classification_report(y_test, y_pred, target_names=["cotidiano", "médico"]))
+print(f"Accuracy:        {accuracy_score(y_test, y_pred):.4f}")
+print(f"Macro-Precision: {precision_macro:.4f}")
+print(f"Macro-Recall:    {recall_macro:.4f}")
+print(f"Macro-F1:        {f1_macro:.4f}")
+
+cm = confusion_matrix(y_test, y_pred)
+print("\n── Matriz de Confusión ──")
+print(f"                 Pred. cotidiano  Pred. médico")
+print(f"Real cotidiano   {cm[0,0]:^15}  {cm[0,1]:^12}")
+print(f"Real médico      {cm[1,0]:^15}  {cm[1,1]:^12}")
+
+# Falsos positivos: cotidiano clasificado como médico
+fp_indices = [i for i, (real, pred) in enumerate(zip(y_test, y_pred)) if real == 0 and pred == 1]
+# Falsos negativos: médico clasificado como cotidiano
+fn_indices = [i for i, (real, pred) in enumerate(zip(y_test, y_pred)) if real == 1 and pred == 0]
+
+print("\n── Falsos Positivos (cotidiano → médico) ──")
+for i in fp_indices:
+    print(f"  '{X_test[i][:120]}'")
+
+print("\n── Falsos Negativos (médico → cotidiano) ──")
+for i in fn_indices:
+    print(f"  '{X_test[i][:120]}'")
 
 # ── 7. GUARDAR MODELO ───────────────────────────────────────────────────────
 
